@@ -3,26 +3,35 @@
 ctl-opt main(main);
 
 dcl-proc main;
-    dcl-s text char(52);
-    dcl-ds orders dim(*auto:10000) qualified;
+    dcl-s #rows zoned(5);
+    dcl-ds #orders dim(*auto:10000) qualified;
         id zoned(5) inz;
         data varchar(250);
     end-ds;
 
     exec sql 
-        set options commit = *none;
+        set option commit = *none;
 
     // I'm going to read a table into a structure
-    %elem(orders) = 0;
+    %elem(#orders) = 0;
 
     exec sql
-        select order_id, order_data
-        into :orders
-        from clv1.orders
+        declare tstCursor cursor for
+            select *
+            from clv1.orders;
+    exec sql
+        open tstCursor;
+    
+    // Max.number of rows to load
+    #rows = 10000;
 
-    text = %editc(%elem(orders):'Z');
+    exec sql
+        fetch tstCursor for :rows rows into :orders;
 
-    dsply text;
+    exec sql
+        close tstCursor;
+
+    dsply %elem(orders);
 
     return;
 end-proc;
