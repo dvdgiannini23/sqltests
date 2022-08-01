@@ -26,12 +26,12 @@ dcl-proc main;
     #rows = 10000;
 
     exec sql
-        fetch tstCursor for :rows rows into :orders;
+        fetch tstCursor for :#rows rows into :#orders;
 
     exec sql
         close tstCursor;
 
-    dsply %elem(orders);
+    dsply %elem(#orders);
 
     return;
 end-proc;
