@@ -14,6 +14,7 @@ dcl-s id zoned(5);
 dcl-s order zoned(5);
 dcl-s customer char(52);
 dcl-s number zoned(5);
+dcl-s z zoned(4);
 dcl-ds data dim(*auto:1000) qualified;
     id zoned(5) inz;
     name varchar(50);
@@ -82,7 +83,7 @@ dou %eof(CUSTOMERS);
         data(z).name = c_descrip;
     endif;
 enddo;
-dsply %elem(z);
+dsply %elem(data);
 
 *inlr = '1';
 return;

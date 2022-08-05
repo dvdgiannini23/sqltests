@@ -4,6 +4,8 @@ dcl-s id zoned(5);
 dcl-s order zoned(5);
 dcl-s customer char(52);
 dcl-s number zoned(5);
+dcl-s z zoned(4);
+dcl-s rows zoned(4);
 dcl-ds data dim(*auto:1000) qualified;
     id zoned(5) inz;
     name varchar(50);
@@ -74,21 +76,21 @@ exec sql
 // (in this case we will not need a loop...)
 %elem(data) = 0;
 exec sql
-    declare c1 cursor for 
+    declare c2 cursor for 
         select customer_id, customer_description
         from clv1.customers;
 exec sql
-    open c1;
+    open c2;
 
 // Maximum elements to store in the data structure
 rows = 1000;
 exec sql
-    fetch c1 for :rows rows into :data;
+    fetch c2 for :rows rows into :data;
 
 exec sql 
-    close c1;
+    close c2;
 
-dsply %elem(z);
+dsply %elem(data);
 
 
 *inlr = '1';
