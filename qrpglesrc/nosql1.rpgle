@@ -31,6 +31,7 @@ else;
 endif;
 
 // Join of two tables
+// I have the order number, and I want the name of the customer
 order = 5;
 chain order rorders;
 if %found;
