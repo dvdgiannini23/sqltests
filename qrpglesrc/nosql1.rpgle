@@ -1,12 +1,12 @@
 **free
 
 dcl-f customers usage(*input:*output)
-    extdesc('CLV1/CUSTOMERS')
+    extdesc('DGIANNINI1/CUSTOMERS')
     extfile(*extdesc)
     keyed prefix(c_);
 
 dcl-f orders usage(*input)
-    extdesc('CLV1/ORDERS')
+    extdesc('DGIANNINI1/ORDERS')
     extfile(*extdesc)
     keyed prefix(o_);
 

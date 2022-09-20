@@ -11,7 +11,7 @@ dcl-proc main;
     exec sql
         set option commit = *none;
 
-    #library = 'CLV1';
+    #library = 'DGIANNINI1';
     #file = 'ORDERS';
 
     exec sql

@@ -18,7 +18,7 @@ dcl-proc main;
     exec sql
         declare tstCursor cursor for
             select *
-            from clv1.orders;
+            from dgiannini1.orders;
     exec sql
         open tstCursor;
     

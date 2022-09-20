@@ -18,7 +18,7 @@ id = 26;
 
 exec sql
     select descrip into :customer
-    from clv1.customers
+    from dgiannini1.customers
     where id = :id;
 if sqlcod = 0;
     dsply customer;
@@ -31,7 +31,7 @@ endif;
 order = 5;
 exec sql
     select c.descrip into :customer
-    from clv1.customers c, clv1.orders o
+    from dgiannini1.customers c, dgiannini1.orders o
     where o.order_id = :order and
         o.customer_id = c.id;
 if sqlcod = 0;
@@ -45,20 +45,20 @@ endif;
 number = 0;
 exec sql
     select count(*) into :number
-    from clv1.customers;
+    from dgiannini1.customers;
 dsply number;
 
 // Adding data to the table
 customer = 'Example';
 exec sql
-    insert into clv1.customers
+    insert into dgiannini1.customers
     values ( default, :customer);
 
 // Retrieving data in a loop
 exec sql
     declare c1 cursor for
         select id, descrip 
-        from clv1.customers;
+        from dgiannini1.customers;
 exec sql
     open c1;
 
@@ -80,7 +80,7 @@ exec sql
 exec sql
     declare c2 cursor for
         select id, descrip 
-        from clv1.customers;
+        from dgiannini1.customers;
 exec sql
     open c2;
 
